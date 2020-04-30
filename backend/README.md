@@ -87,7 +87,6 @@ GET '/categories'
 '5' : "Entertainment",
 '6' : "Sports"}
 
-```
 GET '/questions'
 - Fetches a dictionary of questions 
 - Request Arguments: None
@@ -121,7 +120,6 @@ GET '/questions'
     "total_questions": 18
 }
 
-```
 DELETE /questions/<question_id>
 - Delete the question with id passed  
 - Request Arguments: question_id
@@ -131,7 +129,6 @@ DELETE /questions/<question_id>
     "success": true
 }
 
-```
 POST /questions
 - Create a new question
 - Request Arguments: question, answer, category, difficulty
@@ -140,8 +137,6 @@ POST /questions
   "created": 25, 
   "success": true
 }
-
-```
 
 POST /questions/search
 - Search a question with a keyword and bring all result matching the key
@@ -182,8 +177,6 @@ POST /questions/search
   "success": true, 
   "total_questions": 4
 }
-
-```
 
 GET /categories/<int:category_id>/questions
 - Fetches a dictionary of questions with the spacified type
@@ -232,7 +225,6 @@ GET /categories/<int:category_id>/questions
     "total_questions": 5
 }
 
-```
 
 POST /quizzesPOST
 - Fetches a random question with the spacified type
@@ -249,7 +241,7 @@ POST /quizzesPOST
   "success": true
 }
 
-```
+
 ## Testing
 To run the tests, run
 ```
