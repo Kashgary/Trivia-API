@@ -88,8 +88,168 @@ GET '/categories'
 '6' : "Sports"}
 
 ```
+GET '/questions'
+- Fetches a dictionary of questions 
+- Request Arguments: None
+- Returns: An object with a single key, categories and pagnated questions with totale number
+{
+    "categories": {
+        "1": "Science",
+        "2": "Art",
+        "3": "Geography",
+        "4": "History",
+        "5": "Entertainment",
+        "6": "Sports"
+    },
+    "current_category": null,
+    "questions": [
+        {
+            "answer": "Maya Angelou",
+            "category": 4,
+            "difficulty": 2,
+            "id": 5,
+            "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
+        },
+        {
+            "answer": "Edward Scissorhands",
+            "category": 5,
+            "difficulty": 3,
+            "id": 6,
+            "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+    ],
+    "success": true,
+    "total_questions": 18
+}
 
+```
+DELETE /questions/<question_id>
+- Delete the question with id passed  
+- Request Arguments: question_id
+- Returns: the deleted id of the question
+{
+    "deleted": "5",
+    "success": true
+}
 
+```
+POST /questions
+- Create a new question
+- Request Arguments: question, answer, category, difficulty
+- Returns: the created id question 
+{
+  "created": 25, 
+  "success": true
+}
+
+```
+
+POST /questions/search
+- Search a question with a keyword and bring all result matching the key
+- Request Arguments: searchTerm
+- Returns: the result of the search
+{
+  "current_category": null, 
+  "questions": [
+    {
+      "answer": "Muhammad Ali", 
+      "category": 4, 
+      "difficulty": 1, 
+      "id": 9, 
+      "question": "What boxer's original name is Cassius Clay?"
+    }, 
+    {
+      "answer": "Edward Scissorhands", 
+      "category": 5, 
+      "difficulty": 3, 
+      "id": 6, 
+      "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+    }, 
+    {
+      "answer": "Lake Victoria", 
+      "category": 3, 
+      "difficulty": 2, 
+      "id": 13, 
+      "question": "What is the largest lake in Africa?"
+    }, 
+    {
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }
+  ], 
+  "success": true, 
+  "total_questions": 4
+}
+
+```
+
+GET /categories/<int:category_id>/questions
+- Fetches a dictionary of questions with the spacified type
+- Request Arguments: category_id
+- Returns: an object with pagnated questions with total number
+{
+    "current_category": 2,
+    "questions": [
+        {
+            "answer": "Escher",
+            "category": 2,
+            "difficulty": 1,
+            "id": 16,
+            "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        },
+        {
+            "answer": "Mona Lisa",
+            "category": 2,
+            "difficulty": 3,
+            "id": 17,
+            "question": "La Giaconda is better known as what?"
+        },
+        {
+            "answer": "One",
+            "category": 2,
+            "difficulty": 4,
+            "id": 18,
+            "question": "How many paintings did Van Gogh sell in his lifetime?"
+        },
+        {
+            "answer": "Jackson Pollock",
+            "category": 2,
+            "difficulty": 2,
+            "id": 19,
+            "question": "Which American artist was a pioneer of Abstract Expressionism, and a leading exponent of action painting?"
+        },
+        {
+            "answer": "dfgdfgd",
+            "category": 2,
+            "difficulty": 1,
+            "id": 25,
+            "question": "dfgdfgd"
+        }
+    ],
+    "success": true,
+    "total_questions": 5
+}
+
+```
+
+POST /quizzesPOST
+- Fetches a random question with the spacified type
+- Request Arguments: id, type
+- Returns: an object with a question 
+{
+  "question": {
+    "answer": "Uruguay", 
+    "category": 6, 
+    "difficulty": 4, 
+    "id": 11, 
+    "question": "Which country won the first ever soccer World Cup in 1930?"
+  }, 
+  "success": true
+}
+
+```
 ## Testing
 To run the tests, run
 ```
