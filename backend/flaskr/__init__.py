@@ -24,15 +24,8 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
     setup_db(app)
-
-    '''
-  @DONE: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
-  '''
     CORS(app)
 
-    '''
-  @DONE: Use the after_request decorator to set Access-Control-Allow
-  '''
     @app.after_request
     def after_request(response):
         response.headers.add(
@@ -57,7 +50,9 @@ def create_app(test_config=None):
 
         return jsonify({
             'success': True,
-            'categories': {category.id: category.type for category in categories}
+            'categories': {
+                category.id: category.type for category in categories
+                }
         })
 
     '''
@@ -69,7 +64,8 @@ def create_app(test_config=None):
 
   TEST: At this point, when you start the application
   you should see questions and categories generated,
-  ten questions per page and pagination at the bottom of the screen for three pages.
+  ten questions per page and pagination
+  at the bottom of the screen for three pages.
   Clicking on the page numbers should update the questions.
   '''
     @app.route('/questions', methods=['GET'])
@@ -86,7 +82,9 @@ def create_app(test_config=None):
             'success': True,
             'questions': paginated_questions,
             'total_questions': len(selection),
-            'categories': {category.id: category.type for category in categories},
+            'categories': {
+                category.id: category.type for category in categories
+                },
             'current_category': None
         })
 
@@ -94,7 +92,8 @@ def create_app(test_config=None):
   @DONE:
   Create an endpoint to DELETE question using a question ID.
 
-  TEST: When you click the trash icon next to a question, the question will be removed.
+  TEST: When you click the trash icon next to a question,
+  the question will be removed.
   This removal will persist in the database and when you refresh the page.
   '''
     @app.route("/questions/<question_id>", methods=['DELETE'])
@@ -124,7 +123,9 @@ def create_app(test_config=None):
         body = request.get_json()
 
         if not (
-                'question' in body and 'answer' in body and 'category' in body and 'difficulty' in body):
+                'question' in body and 'answer' in body and
+                'category' in body and 'difficulty' in body
+                ):
             abort(422)
 
         try:
@@ -212,16 +213,17 @@ def create_app(test_config=None):
             previous_questions = body.get('previous_questions')
 
             if category['type'] == 'click':
-                available_questions = Question.query.filter(
+                a_questions = Question.query.filter(
                     Question.id.notin_((previous_questions))).all()
             else:
-                available_questions = Question.query.filter_by(
+                a_questions = Question.query.filter_by(
                     category=category['id']).filter(
                     Question.id.notin_(
                         (previous_questions))).all()
 
-            new_question = available_questions[random.randrange(
-                0, len(available_questions))].format() if len(available_questions) > 0 else None
+            new_question = a_questions[random.randrange(
+                0,
+                len(a_questions))].format() if len(a_questions) > 0 else None
 
             return jsonify({
                 'success': True,
